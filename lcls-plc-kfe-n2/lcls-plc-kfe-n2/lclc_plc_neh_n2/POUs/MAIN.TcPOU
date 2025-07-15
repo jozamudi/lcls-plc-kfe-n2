@@ -8,6 +8,14 @@ VAR
     {attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value'}
     rawInputmA AT %I*: INT;
 
+	fPress : LREAL;
+	
+	bInduceButton AT %I*	: BOOL;
+	bFinishExchangeButton AT %I*	: BOOL;
+	fMinPressureThresh 		: LREAL;
+	fMinMassThresh			: LREAL;
+	fWarningThresh: LREAL;
+
 
     {attribute 'pytmc' := 'pv: XBD:N2:MAX_MASS'}
     maxMass: LREAL;
@@ -15,8 +23,6 @@ VAR
     minMass: LREAL;
     {attribute 'pytmc' := 'pv: XBD:N2:CURRENT_MASS'}
     fMassofGas: LREAL;
-    {attribute 'pytmc' := 'pv: XBD:N2:MAINTENANCE_MODE'}
-    bMaintenanceMode : BOOL := FALSE;
 
     {attribute 'pytmc' := 'pv: XBD:N2:LOW_LEVEL'}
     fMassLowLevl : LREAL := maxMass / 2;
@@ -56,23 +62,30 @@ fbGetmA(
 fMassofGas := (fmA - 4.0) / 16.0 * maxMass + minMass;
 
 CASE iState OF
-    0: // INIT
-    IF NOT bMaintenanceMode THEN
-        iState := 2;
-    END_IF
-
-    1: // MAINTINANCE MODE
-    IF NOT bMaintenanceMode THEN
-        iState := 0;
-    END_IF
-
-    2: // OP MODE
-
-    IF fMassofGas < fMassLowLevl THEN bMassIsLow := TRUE; ELSE bMassIsLow := FALSE; END_IF;
-
-    IF bMaintenanceMode THEN
+	-1: // INIT
+	fbValveRelay.ACTUATE_VALVE(FALSE);
+	 IF ((fPress > fMinPressureThresh) AND (fmA > fMinMassThresh)) THEN fbValveRelay.ACTUATE_VALVE(TRUE); END_IF
+	iState := 0;
+	
+    0: // Nominal
+    IF  ((fPress < fMinPressureThresh) OR (fmA < fMinMassThresh) OR (bInduceButton)) THEN
+		// TURN LIGHT RED
         iState := 1;
+		fbValveRelay.ACTUATE_VALVE(FALSE);
     END_IF
+	
+	IF (fmA < fWarningThresh) THEN 
+		// TURN ON YELLOW LIGHT
+	END_IF
+	
+    1: // EXCHANGE MODE
+	IF  ((fPress > fMinPressureThresh) AND (fmA > fMinMassThresh) AND (bFinishExchangeButton)) THEN
+        iState := 0;
+		// TURN OFF RED LIGHT
+    END_IF
+	
+	
+
 END_CASE
 
 

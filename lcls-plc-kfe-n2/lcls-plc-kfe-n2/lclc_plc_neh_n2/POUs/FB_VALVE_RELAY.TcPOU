@@ -23,9 +23,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-
-
-fbValveTimer(IN:=TRUE, PT:=tActuateTime); //RESTART TIMER
+fbValveTimer(IN:=TRUE, PT:=tActuateTime);
 
 CASE iState OF
     0: // INIT
@@ -62,7 +60,12 @@ END_VAR
 ELSE
 	rawOutputRelayChan1 := TRUE;
 	rawOutputRelayChan3 := FALSE;
-END_IF]]></ST>
+END_IF
+
+// prevent valve from not being actuated for long time.
+fbValveTimer(IN:=FALSE); // Valve has been actuated; reset timer.
+
+]]></ST>
       </Implementation>
     </Method>
   </POU>
