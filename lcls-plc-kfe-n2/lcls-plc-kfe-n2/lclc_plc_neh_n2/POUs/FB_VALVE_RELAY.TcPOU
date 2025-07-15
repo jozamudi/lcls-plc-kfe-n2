@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_VALVE_RELAY" Id="{e2531ff2-ea72-4542-bd8f-7299f2dc48b9}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_VALVE_RELAY
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_VALVE_RELAY 
+VAR_IN_OUT
+END_VAR
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
+	bTimerQ : BOOL;
 END_VAR
 VAR
 	b_open : BOOL; // control variable
@@ -17,8 +20,8 @@ VAR
 	bMovingRBV AT %I* : BOOL;
 	
 	tActuateTime : TIME := T#24h;
-	fbValveTimer : TON;
 	iState: INT;
+	fbValveTimer : TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -45,7 +48,7 @@ CASE iState OF
 
 END_CASE
 
-]]></ST>
+bTimerQ := fbValveTimer.Q;]]></ST>
     </Implementation>
     <Method Name="ACTUATE_VALVE" Id="{919e3d16-476c-4acf-ad5c-4fabd5d630e2}">
       <Declaration><![CDATA[METHOD ACTUATE_VALVE : BOOL
@@ -61,9 +64,6 @@ ELSE
 	rawOutputRelayChan1 := TRUE;
 	rawOutputRelayChan3 := FALSE;
 END_IF
-
-// prevent valve from not being actuated for long time.
-fbValveTimer(IN:=FALSE); // Valve has been actuated; reset timer.
 
 ]]></ST>
       </Implementation>

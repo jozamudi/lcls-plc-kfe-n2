@@ -14,6 +14,9 @@
     <LibraryReferences>{e4979d30-2402-4f91-a9f7-debda62140d9}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\ENUM_LED_MODES.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
