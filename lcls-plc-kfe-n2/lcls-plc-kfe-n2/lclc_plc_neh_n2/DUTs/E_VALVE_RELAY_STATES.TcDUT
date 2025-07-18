@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <DUT Name="ENUM_MAIN_STATE_MACHINE" Id="{04c7a38b-f2a2-42a7-8850-fcc470324d66}">
+  <DUT Name="E_VALVE_RELAY_STATES" Id="{3fe18133-ed3e-40a2-854b-0f421111bb1e}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
-TYPE ENUM_MAIN_STATE_MACHINE :
+TYPE E_VALVE_RELAY_STATES :
 (
 	INIT := 0,
 	NOMINAL := 1,
-	EXCHANGE_MODE := 2
-	
+	ACTUATE := 2,
+	WAIT := 3
 );
 END_TYPE
 ]]></Declaration>
