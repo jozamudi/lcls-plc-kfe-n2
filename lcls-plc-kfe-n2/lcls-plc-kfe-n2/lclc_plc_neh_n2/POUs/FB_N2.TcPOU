@@ -11,9 +11,9 @@ VAR
     rawInputmA AT %I*: INT;
 	
 	// WILL KEEP AS PVS FOR NOW, CAN BE PHYSICAL BUTTONS AT SOME POINT
-	{attribute 'pytmc' := 'pv: BEGIN_CHANGE'}
+	{attribute 'pytmc' := 'pv: START_EXCHANGE'}
     bInduceButton AT %I*	: BOOL;
-	{attribute 'pytmc' := 'pv: DONE_EXCHANGE'}
+	{attribute 'pytmc' := 'pv: FINISH_EXCHANGE'}
     bFinishExchangeButton AT %I*	: BOOL;
 
     fbValveRelay 	: FB_VALVE_RELAY;
@@ -25,11 +25,11 @@ VAR
     maxMass: LREAL;
     {attribute 'pytmc' := 'pv: MIN_MASS'}
     minMass: LREAL;
-    {attribute 'pytmc' := 'pv: CURRENT_MASS'}
+    {attribute 'pytmc' := 'pv: MASS'}
     fMassofGas: LREAL;
     fmA: LREAL;
 	
-	{attribute 'pytmc' := 'pv: PRESS'}
+	{attribute 'pytmc' := 'pv: PRESSURE'}
     fPress : LREAL;
 	
     // WILL NEED SOME SENSABLE DEFAULT HERE?
