@@ -15,7 +15,10 @@ VAR
 	bYellowPin AT %I* : BOOL;
 	bRedPin AT %I* : BOOL;
 	
-	tLEDFLashTimer : TOF;
+	tLEDFLashTimerON : TON;
+	tLEDFLashTimerOFF : TOF;
+	
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -26,22 +29,28 @@ END_VAR
 	RETURN;
 END_IF
 
-tLEDFLashTimer(IN:=bFlashing, PT:=tFlashInterval);
+tLEDFLashTimerON(IN:=bFlashing, PT:=tFlashInterval);
+tLEDFLashTimerOFF(IN:= NOT tLEDFLashTimerON.Q, PT:=tFlashInterval);
 
 CASE eLEDMode OF
 	E_LED_MODES.GREEN:
-		bGreenPin := TRUE;
+		bGreenPin := NOT bFlashing OR tLEDFLashTimerON.Q;
 		bYellowPin := FALSE;
 		bRedPin := FALSE;
 	E_LED_MODES.YELLOW:
 		bGreenPin := FALSE;
-		bYellowPin := TRUE;
+		bYellowPin := NOT bFlashing OR tLEDFLashTimerON.Q;
 		bRedPin := FALSE;
 	E_LED_MODES.RED:
 		bGreenPin := FALSE;
 		bYellowPin := FALSE;
-		bRedPin := TRUE;
-END_CASE]]></ST>
+		bRedPin :=  NOT bFlashing OR tLEDFLashTimerON.Q;
+END_CASE
+
+IF NOT tLEDFLashTimerOFF.Q THEN
+	tLEDFLashTimerON(IN:=FALSE); 
+END_IF
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
