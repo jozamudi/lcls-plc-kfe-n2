@@ -31,7 +31,7 @@ VAR
 	
 	{attribute 'pytmc' := '
 		pv: KFE:N2:PT:PRESSURE
-		field: EGU lbs
+		field: EGU psig
 	'}
 	fPress : LREAL;
     fPressMa : LREAL;
