@@ -16,7 +16,7 @@ VAR
     '}
     fbN2_Left : FB_N2;
 
-        {attribute 'pytmc' := 'pv: KFE:N2:02'}
+    {attribute 'pytmc' := 'pv: KFE:N2:02'}
     {attribute 'TcLinkTo' := '
         .rawInputmA := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 2^Value;
         .iPressRaw := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL3052)^AI Standard Channel 2^Value;
@@ -28,12 +28,32 @@ VAR
 
     '}
     fbN2_Right : FB_N2;
+	
+	{attribute 'pytmc' := 'pv: KFE:N2:PT:PRESSURE'}
+	fPress : LREAL;
+    fPressMa : LREAL;
+	{attribute 'TcLinkTo' := 'TIIB[Term 16 (EL3052)]^AI Standard Channel 1^Value'}
+    iPressRaw AT %I*	: INT;
+	
+	{attribute 'pytmc' := 'pv: KFE:N2:FM:FLOW'}
+	fFlow : LREAL;
+    fFlowMa : LREAL;
+	{attribute 'TcLinkTo' := 'TIIB[Term 16 (EL3052)]^AI Standard Channel 2^Value'}
+    iFlowRaw AT %I*	: INT;
 
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbN2_Left(tActuateTime:=T#24h);
-fbN2_Right(tActuateTime:= T#23h);]]></ST>
+fbN2_Right(tActuateTime:= T#23h);
+
+
+fPressMa := (iPressRaw / 32768.0) * 16.0 + 4;
+fPress := (fPressMa - 4.0) / 16.0 * 500;
+
+fFlowMa := (iFlowRaw / 32768.0) * 16.0 + 4; // converts count to mA 4 - 20ma
+fFlow := (fFlowMa - 4.0 ) / 16.0 * 100; // Gauge Air Specs 4-100 SCFM 
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
