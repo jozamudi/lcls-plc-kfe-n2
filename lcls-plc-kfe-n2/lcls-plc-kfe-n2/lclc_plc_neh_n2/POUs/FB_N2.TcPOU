@@ -40,7 +40,7 @@ VAR
 
     {attribute 'pytmc' := '
         pv: PRESSURE
-        field: EGU psi/g
+        field: EGU psig
     '}
     fPress : LREAL;
     fPressMa : LREAL;
@@ -49,7 +49,7 @@ VAR
     // WILL NEED SOME SENSABLE DEFAULT HERE?
     {attribute 'pytmc' := '
         pv: MIN_PRESS_THRESHOLD
-        field: EGU psi/g
+        field: EGU psig
     '}
     fMinPressureThresh 		: LREAL ;
     {attribute 'pytmc' := '
@@ -122,7 +122,7 @@ CASE iState OF
         // SOLID RED
         eLEDMode := E_LED_MODES.RED;
         bFlashFlag := FALSE;
-        iState := E_MAIN_STATE_MACHINE.BUTTON_WAIT;
+        iState := E_MAIN_STATE_MACHINE.WAITING_FOR_START_ECHANGE;
         fbValveRelay.ACTUATE_VALVE(FALSE);
     ELSE
         eLEDMode := E_LED_MODES.GREEN;
@@ -140,7 +140,7 @@ CASE iState OF
         bFlashFlag := TRUE;
     END_IF
 
-    E_MAIN_STATE_MACHINE.BUTTON_WAIT:
+    E_MAIN_STATE_MACHINE.WAITING_FOR_START_ECHANGE:
     IF bInduceButton THEN
         iState := E_MAIN_STATE_MACHINE.EXCHANGE_MODE;
         eLEDMode := E_LED_MODES.YELLOW;

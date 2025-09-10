@@ -29,7 +29,10 @@ VAR
     '}
     fbN2_Right : FB_N2;
 	
-	{attribute 'pytmc' := 'pv: KFE:N2:PT:PRESSURE'}
+	{attribute 'pytmc' := '
+		pv: KFE:N2:PT:PRESSURE
+		field: EGU lbs
+	'}
 	fPress : LREAL;
     fPressMa : LREAL;
 	{attribute 'TcLinkTo' := 'TIIB[Term 16 (EL3052)]^AI Standard Channel 1^Value'}
