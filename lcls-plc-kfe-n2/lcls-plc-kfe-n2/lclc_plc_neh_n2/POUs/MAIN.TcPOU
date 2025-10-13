@@ -54,9 +54,10 @@ fbN2_Right(tActuateTime:= T#23h);
 fPressMa := (iPressRaw / 32768.0) * 16.0 + 4;
 fPress := (fPressMa - 4.0) / 16.0 * 500;
 
-fFlowMa := (iFlowRaw / 32768.0) * 16.0 + 4; // converts count to mA 4 - 20ma
-fFlow := (fFlowMa - 4.0 ) / 16.0 * 100; // Gauge Air Specs 4-100 SCFM
-]]></ST>
+//fFlowMa := (iFlowRaw / 32768.0) * 16.0 + 4; // converts count to mA 4 - 20ma
+//fFlow := (fFlowMa - 4.0 ) / 16.0 * 100; // Gauge Air Specs 4-100 SCFM
+
+fFlow := iFlowRaw;]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

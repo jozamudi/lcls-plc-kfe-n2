@@ -82,6 +82,7 @@ END_VAR
       <ST><![CDATA[IF bInit THEN
     maxMass := 1000;
     minMass := 0;
+	fMinMassThresh := 550; // Default Value in Lbs
     bInit := FALSE;
 END_IF
 
