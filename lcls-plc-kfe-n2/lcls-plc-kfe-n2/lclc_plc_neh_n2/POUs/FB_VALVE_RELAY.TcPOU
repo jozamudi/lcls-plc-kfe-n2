@@ -12,10 +12,10 @@ VAR_OUTPUT
 END_VAR
 VAR
     {attribute 'pytmc' := '
-		pv: OPN_SW
-		field: ZNAM CLOSE
-		field: ONAM OPEN
-	'}
+        pv: OPN_SW
+        field: ZNAM CLOSE
+        field: ONAM OPEN
+    '}
     b_open : BOOL; // control variable
     // EL2624 Relayu Logic Here
 

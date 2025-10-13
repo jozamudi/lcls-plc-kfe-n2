@@ -28,20 +28,20 @@ VAR
 
     '}
     fbN2_Right : FB_N2;
-	
-	{attribute 'pytmc' := '
-		pv: KFE:N2:PT:PRESSURE
-		field: EGU psig
-	'}
-	fPress : LREAL;
+
+    {attribute 'pytmc' := '
+        pv: KFE:N2:PT:PRESSURE
+        field: EGU psig
+    '}
+    fPress : LREAL;
     fPressMa : LREAL;
-	{attribute 'TcLinkTo' := 'TIIB[Term 16 (EL3052)]^AI Standard Channel 1^Value'}
+    {attribute 'TcLinkTo' := 'TIIB[Term 16 (EL3052)]^AI Standard Channel 1^Value'}
     iPressRaw AT %I*	: INT;
-	
-	{attribute 'pytmc' := 'pv: KFE:N2:FM:FLOW'}
-	fFlow : LREAL;
+
+    {attribute 'pytmc' := 'pv: KFE:N2:FM:FLOW'}
+    fFlow : LREAL;
     fFlowMa : LREAL;
-	{attribute 'TcLinkTo' := 'TIIB[Term 16 (EL3052)]^AI Standard Channel 2^Value'}
+    {attribute 'TcLinkTo' := 'TIIB[Term 16 (EL3052)]^AI Standard Channel 2^Value'}
     iFlowRaw AT %I*	: INT;
 
 END_VAR
@@ -55,7 +55,7 @@ fPressMa := (iPressRaw / 32768.0) * 16.0 + 4;
 fPress := (fPressMa - 4.0) / 16.0 * 500;
 
 fFlowMa := (iFlowRaw / 32768.0) * 16.0 + 4; // converts count to mA 4 - 20ma
-fFlow := (fFlowMa - 4.0 ) / 16.0 * 100; // Gauge Air Specs 4-100 SCFM 
+fFlow := (fFlowMa - 4.0 ) / 16.0 * 100; // Gauge Air Specs 4-100 SCFM
 ]]></ST>
     </Implementation>
   </POU>
