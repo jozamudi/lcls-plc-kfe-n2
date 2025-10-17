@@ -50,16 +50,19 @@ VAR
     {attribute 'pytmc' := '
         pv: MIN_PRESS_THRESHOLD
         field: EGU psig
+        autosave_pass0: VAL DESC
     '}
     fMinPressureThresh 		: LREAL ;
     {attribute 'pytmc' := '
         pv: MIN_MASS_THRESHOLD
         field: EGU lbs
+        autosave_pass0: VAL DESC
     '}
     fMinMassThresh			: LREAL;
     {attribute 'pytmc' := '
         pv: MASS_WARNING_THRESHOLD
         field: EGU lbs
+        autosave_pass0: VAL DESC
     '}
     fWarningThresh: LREAL;
     //
