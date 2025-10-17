@@ -3,9 +3,9 @@
 #
 #         Project: lcls-plc-kfe-n2.tsproj
 #        PLC name: lclc_plc_neh_n2 (lclc_plc_neh_n2 Instance)
-# Generated using: pytmc 2.17.0
-# Project version: ab0f002
-#    Project hash: ab0f002fe9520fccb044de1c2d444011b830628b
+# Generated using: pytmc 2.18.2
+# Project version: 1169338
+#    Project hash: 1169338e974e766a1a5bc8ce40df13ab728fe04d
 #     PLC IP/host: 172.21.92.38 (Specified in Makefile; project has: 192.168.0.100)
 #      PLC Net ID: 192.168.0.100.1.1 (Specified in Makefile; project has: 192.168.0.100.1.1)
 # ** DEVELOPMENT MODE IOC **
@@ -15,9 +15,9 @@
 # Libraries:
 #
 #   LCLS General: * -> 2.12.0 (SLAC)
-#   Tc2_Standard: * -> 3.3.2.0 (Beckhoff Automation GmbH)
+#   Tc2_Standard: * -> 3.3.3.0 (Beckhoff Automation GmbH)
 #   Tc2_System: * -> 3.4.24.0 (Beckhoff Automation GmbH)
-#   Tc3_Module: * -> 3.3.18.0 (Beckhoff Automation GmbH)
+#   Tc3_Module: * -> 3.3.21.0 (Beckhoff Automation GmbH)
 #
 ################### AUTO-GENERATED DO NOT EDIT ###################
 < envPaths
@@ -37,14 +37,14 @@ epicsEnvSet("ASYN_PORT",        "ASYN_PLC")
 epicsEnvSet("IPADDR",           "172.21.92.38")
 epicsEnvSet("AMSID",            "192.168.0.100.1.1")
 epicsEnvSet("AMS_PORT",         "851")
-epicsEnvSet("ADS_MAX_PARAMS",   "1016")
+epicsEnvSet("ADS_MAX_PARAMS",   "1062")
 epicsEnvSet("ADS_SAMPLE_MS",    "50")
 epicsEnvSet("ADS_MAX_DELAY_MS", "100")
 epicsEnvSet("ADS_TIMEOUT_MS",   "1000")
 epicsEnvSet("ADS_TIME_SOURCE",  "0")
 
 # Add a route to the PLC automatically:
-system("${ADS_IOC_TOP}/scripts/add_route.sh 172.21.92.38 ^172.*")
+system("${ADS_IOC_TOP}/scripts/add_route.sh 172.21.92.38 ^172.*$")
 
 # adsAsynPortDriverConfigure(portName, ipaddr, amsaddr, amsport,
 #    asynParamTableSize, priority, noAutoConnect, defaultSampleTimeMS,
@@ -82,24 +82,24 @@ dbLoadRecords("caPutLog.db", "IOC=$(IOC)")
 dbLoadRecords("TwinCAT_TaskInfo.db", "PORT=$(ASYN_PORT),PREFIX=PLC:lclc_plc_neh_n2,IDX=1,TASK_PORT=350")
 dbLoadRecords("TwinCAT_AppInfo.db", "PORT=$(ASYN_PORT), PREFIX=PLC:lclc_plc_neh_n2")
 
-dbLoadRecords("TwinCAT_Project.db", "PREFIX=PLC:lclc_plc_neh_n2,PROJECT=lcls-plc-kfe-n2.tsproj,HASH=ab0f002,VERSION=ab0f002,PYTMC=2.17.0,PLC_HOST=172.21.92.38")
+dbLoadRecords("TwinCAT_Project.db", "PREFIX=PLC:lclc_plc_neh_n2,PROJECT=lcls-plc-kfe-n2.tsproj,HASH=1169338,VERSION=1169338,PYTMC=2.18.2,PLC_HOST=172.21.92.38")
 
 #   LCLS General: * -> 2.12.0 (SLAC)
 dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclc_plc_neh_n2,DEPENDENCY=LCLS_General,VERSION=2.12.0,VENDOR=SLAC")
-#   Tc2_Standard: * -> 3.3.2.0 (Beckhoff Automation GmbH)
-dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclc_plc_neh_n2,DEPENDENCY=Tc2_Standard,VERSION=3.3.2.0,VENDOR=Beckhoff Automation GmbH")
+#   Tc2_Standard: * -> 3.3.3.0 (Beckhoff Automation GmbH)
+dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclc_plc_neh_n2,DEPENDENCY=Tc2_Standard,VERSION=3.3.3.0,VENDOR=Beckhoff Automation GmbH")
 #   Tc2_System: * -> 3.4.24.0 (Beckhoff Automation GmbH)
 dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclc_plc_neh_n2,DEPENDENCY=Tc2_System,VERSION=3.4.24.0,VENDOR=Beckhoff Automation GmbH")
-#   Tc3_Module: * -> 3.3.18.0 (Beckhoff Automation GmbH)
-dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclc_plc_neh_n2,DEPENDENCY=Tc3_Module,VERSION=3.3.18.0,VENDOR=Beckhoff Automation GmbH")
+#   Tc3_Module: * -> 3.3.21.0 (Beckhoff Automation GmbH)
+dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclc_plc_neh_n2,DEPENDENCY=Tc3_Module,VERSION=3.3.21.0,VENDOR=Beckhoff Automation GmbH")
 
 cd "$(IOC_TOP)"
 
 ## PLC Project Database files ##
 dbLoadRecords("lclc_plc_neh_n2.db", "PORT=$(ASYN_PORT),PREFIX=PLC:lclc_plc_neh_n2:,IOCNAME=$(IOC),IOC=$(IOC)")
 
-# Total records: 16
-callbackSetQueueSize(2032)
+# Total records: 62
+callbackSetQueueSize(2124)
 
 # Autosave and archive settings:
 save_restoreSet_status_prefix("PLC:lclc_plc_neh_n2:")

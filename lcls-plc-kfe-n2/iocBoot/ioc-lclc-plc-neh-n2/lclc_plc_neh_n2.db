@@ -74,13 +74,61 @@ record(longin, "$(PREFIX)LCLSGeneral:LogMessageCount_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "XBD:N2:MAINTENANCE_MODE_RBV") {
-  field(DESC, "MAIN.bMaintenanceMode")
+record(ai, "KFE:N2:FM:FLOW_RBV") {
+  field(DESC, "MAIN.fFlow")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fFlow?")
+  field(PREC, "3")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:FM:FLOW") {
+  field(DESC, "MAIN.fFlow")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fFlow=")
+  field(PREC, "3")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:PT:PRESSURE_RBV") {
+  field(DESC, "MAIN.fPress")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fPress?")
+  field(PREC, "3")
+  field(EGU, "psig")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:PT:PRESSURE") {
+  field(DESC, "MAIN.fPress")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fPress=")
+  field(PREC, "3")
+  field(EGU, "psig")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(bi, "KFE:N2:01:FINISH_EXCHANGE_RBV") {
+  field(DESC, "MAIN.fbN2_Left.bFinishExchangeButton")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
   field(TSE, "-2")
   field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.bMaintenanceMode?")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.bFinishExchangeButton?")
   field(ZNAM, "FALSE")
   field(ONAM, "TRUE")
   info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
@@ -88,93 +136,24 @@ record(bi, "XBD:N2:MAINTENANCE_MODE_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bo, "XBD:N2:MAINTENANCE_MODE") {
-  field(DESC, "MAIN.bMaintenanceMode")
+record(bo, "KFE:N2:01:FINISH_EXCHANGE") {
+  field(DESC, "MAIN.fbN2_Left.bFinishExchangeButton")
   field(DTYP, "asynInt32")
   field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.bMaintenanceMode=")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.bFinishExchangeButton=")
   field(ZNAM, "FALSE")
   field(ONAM, "TRUE")
   info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
   info(archive, "VAL")
 }
 
-record(ai, "XBD:N2:CURRENT_MASS_RBV") {
-  field(DESC, "MAIN.fMassofGas")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fMassofGas?")
-  field(PREC, "3")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "XBD:N2:CURRENT_MASS") {
-  field(DESC, "MAIN.fMassofGas")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fMassofGas=")
-  field(PREC, "3")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(ai, "XBD:N2:MAX_MASS_RBV") {
-  field(DESC, "MAIN.maxMass")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.maxMass?")
-  field(PREC, "3")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "XBD:N2:MAX_MASS") {
-  field(DESC, "MAIN.maxMass")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.maxMass=")
-  field(PREC, "3")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(ai, "XBD:N2:MIN_MASS_RBV") {
-  field(DESC, "MAIN.minMass")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.minMass?")
-  field(PREC, "3")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "XBD:N2:MIN_MASS") {
-  field(DESC, "MAIN.minMass")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.minMass=")
-  field(PREC, "3")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(bi, "XBD:N2:VRC:01_RBV") {
-  field(DESC, "MAIN.rawOutputRelayChan1")
+record(bi, "KFE:N2:01:LED_FLASH_RBV") {
+  field(DESC, "MAIN.fbN2_Left.bFlashFlag")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
   field(TSE, "-2")
   field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.rawOutputRelayChan1?")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.bFlashFlag?")
   field(ZNAM, "FALSE")
   field(ONAM, "TRUE")
   info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
@@ -182,13 +161,661 @@ record(bi, "XBD:N2:VRC:01_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bo, "XBD:N2:VRC:01") {
-  field(DESC, "MAIN.rawOutputRelayChan1")
+record(bo, "KFE:N2:01:LED_FLASH") {
+  field(DESC, "MAIN.fbN2_Left.bFlashFlag")
   field(DTYP, "asynInt32")
   field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.rawOutputRelayChan1=")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.bFlashFlag=")
   field(ZNAM, "FALSE")
   field(ONAM, "TRUE")
   info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(bi, "KFE:N2:01:START_EXCHANGE_RBV") {
+  field(DESC, "MAIN.fbN2_Left.bInduceButton")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.bInduceButton?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "KFE:N2:01:START_EXCHANGE") {
+  field(DESC, "MAIN.fbN2_Left.bInduceButton")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.bInduceButton=")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(mbbi, "KFE:N2:01:LED_RBV") {
+  field(DESC, "MAIN.fbN2_Left.eLEDMode")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.eLEDMode?")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "OFF")
+  field(ONST, "GREEN")
+  field(TWST, "YELLOW")
+  field(THST, "RED")
+  info(autosaveFields_pass0, "DESC DISS EISV ELSV FFSV FRSV FTSV FVSV NISV ONSV SIMS SVSV SXSV TESV THSV TTSV TVSV TWSV UDFS UNSV ZRSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(mbbo, "KFE:N2:01:LED") {
+  field(DESC, "MAIN.fbN2_Left.eLEDMode")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "OFF")
+  field(ONST, "GREEN")
+  field(TWST, "YELLOW")
+  field(THST, "RED")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.eLEDMode=")
+  info(autosaveFields_pass0, "COSV DESC DISS EISV ELSV FFSV FRSV FTSV FVSV NISV ONSV SIMS SVSV SXSV TESV THSV TTSV TVSV TWSV UDFS UNSV VAL ZRSV")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:01:MASS_RBV") {
+  field(DESC, "MAIN.fbN2_Left.fMassofGas")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.fMassofGas?")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:01:MASS") {
+  field(DESC, "MAIN.fbN2_Left.fMassofGas")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.fMassofGas=")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:01:MIN_MASS_THRESHOLD_RBV") {
+  field(DESC, "MAIN.fbN2_Left.fMinMassThresh")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.fMinMassThresh?")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:01:MIN_MASS_THRESHOLD") {
+  field(DESC, "MAIN.fbN2_Left.fMinMassThresh")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.fMinMassThresh=")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:01:MIN_PRESS_THRESHOLD_RBV") {
+  field(DESC, "MAIN.fbN2_Left.fMinPressureThresh")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.fMinPressureThresh?")
+  field(PREC, "3")
+  field(EGU, "psig")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:01:MIN_PRESS_THRESHOLD") {
+  field(DESC, "MAIN.fbN2_Left.fMinPressureThresh")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.fMinPressureThresh=")
+  field(PREC, "3")
+  field(EGU, "psig")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:01:PRESSURE_RBV") {
+  field(DESC, "MAIN.fbN2_Left.fPress")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.fPress?")
+  field(PREC, "3")
+  field(EGU, "psig")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:01:PRESSURE") {
+  field(DESC, "MAIN.fbN2_Left.fPress")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.fPress=")
+  field(PREC, "3")
+  field(EGU, "psig")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:01:MASS_WARNING_THRESHOLD_RBV") {
+  field(DESC, "MAIN.fbN2_Left.fWarningThresh")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.fWarningThresh?")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:01:MASS_WARNING_THRESHOLD") {
+  field(DESC, "MAIN.fbN2_Left.fWarningThresh")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.fWarningThresh=")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+}
+
+record(bi, "KFE:N2:01:VALVE:OPN_SW_RBV") {
+  field(DESC, "MAIN.fbN2_Left.fbValveRelay.b_open")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.fbValveRelay.b_open?")
+  field(ZNAM, "CLOSE")
+  field(ONAM, "OPEN")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "KFE:N2:01:VALVE:OPN_SW") {
+  field(DESC, "MAIN.fbN2_Left.fbValveRelay.b_open")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.fbValveRelay.b_open=")
+  field(ZNAM, "CLOSE")
+  field(ONAM, "OPEN")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(mbbi, "KFE:N2:01:STATE_RBV") {
+  field(DESC, "MAIN.fbN2_Left.iState")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.iState?")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "INIT")
+  field(ONST, "NOMINAL")
+  field(TWST, "EXCHANGE_MODE")
+  field(THST, "WAITING_FOR_START_ECHANGE")
+  info(autosaveFields_pass0, "DESC DISS EISV ELSV FFSV FRSV FTSV FVSV NISV ONSV SIMS SVSV SXSV TESV THSV TTSV TVSV TWSV UDFS UNSV ZRSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(mbbo, "KFE:N2:01:STATE") {
+  field(DESC, "MAIN.fbN2_Left.iState")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "INIT")
+  field(ONST, "NOMINAL")
+  field(TWST, "EXCHANGE_MODE")
+  field(THST, "WAITING_FOR_START_ECHANGE")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.iState=")
+  info(autosaveFields_pass0, "COSV DESC DISS EISV ELSV FFSV FRSV FTSV FVSV NISV ONSV SIMS SVSV SXSV TESV THSV TTSV TVSV TWSV UDFS UNSV VAL ZRSV")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:01:MAX_MASS_RBV") {
+  field(DESC, "MAIN.fbN2_Left.maxMass")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.maxMass?")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:01:MAX_MASS") {
+  field(DESC, "MAIN.fbN2_Left.maxMass")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.maxMass=")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:01:MIN_MASS_RBV") {
+  field(DESC, "MAIN.fbN2_Left.minMass")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Left.minMass?")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:01:MIN_MASS") {
+  field(DESC, "MAIN.fbN2_Left.minMass")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Left.minMass=")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(bi, "KFE:N2:02:FINISH_EXCHANGE_RBV") {
+  field(DESC, "MAIN.fbN2_Right.bFinishExchangeButton")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.bFinishExchangeButton?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "KFE:N2:02:FINISH_EXCHANGE") {
+  field(DESC, "MAIN.fbN2_Right.bFinishExchangeButton")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.bFinishExchangeButton=")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(bi, "KFE:N2:02:LED_FLASH_RBV") {
+  field(DESC, "MAIN.fbN2_Right.bFlashFlag")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.bFlashFlag?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "KFE:N2:02:LED_FLASH") {
+  field(DESC, "MAIN.fbN2_Right.bFlashFlag")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.bFlashFlag=")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(bi, "KFE:N2:02:START_EXCHANGE_RBV") {
+  field(DESC, "MAIN.fbN2_Right.bInduceButton")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.bInduceButton?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "KFE:N2:02:START_EXCHANGE") {
+  field(DESC, "MAIN.fbN2_Right.bInduceButton")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.bInduceButton=")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(mbbi, "KFE:N2:02:LED_RBV") {
+  field(DESC, "MAIN.fbN2_Right.eLEDMode")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.eLEDMode?")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "OFF")
+  field(ONST, "GREEN")
+  field(TWST, "YELLOW")
+  field(THST, "RED")
+  info(autosaveFields_pass0, "DESC DISS EISV ELSV FFSV FRSV FTSV FVSV NISV ONSV SIMS SVSV SXSV TESV THSV TTSV TVSV TWSV UDFS UNSV ZRSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(mbbo, "KFE:N2:02:LED") {
+  field(DESC, "MAIN.fbN2_Right.eLEDMode")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "OFF")
+  field(ONST, "GREEN")
+  field(TWST, "YELLOW")
+  field(THST, "RED")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.eLEDMode=")
+  info(autosaveFields_pass0, "COSV DESC DISS EISV ELSV FFSV FRSV FTSV FVSV NISV ONSV SIMS SVSV SXSV TESV THSV TTSV TVSV TWSV UDFS UNSV VAL ZRSV")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:02:MASS_RBV") {
+  field(DESC, "MAIN.fbN2_Right.fMassofGas")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.fMassofGas?")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:02:MASS") {
+  field(DESC, "MAIN.fbN2_Right.fMassofGas")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.fMassofGas=")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:02:MIN_MASS_THRESHOLD_RBV") {
+  field(DESC, "MAIN.fbN2_Right.fMinMassThresh")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.fMinMassThresh?")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:02:MIN_MASS_THRESHOLD") {
+  field(DESC, "MAIN.fbN2_Right.fMinMassThresh")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.fMinMassThresh=")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:02:MIN_PRESS_THRESHOLD_RBV") {
+  field(DESC, "MAIN.fbN2_Right.fMinPressureThresh")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.fMinPressureThresh?")
+  field(PREC, "3")
+  field(EGU, "psig")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:02:MIN_PRESS_THRESHOLD") {
+  field(DESC, "MAIN.fbN2_Right.fMinPressureThresh")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.fMinPressureThresh=")
+  field(PREC, "3")
+  field(EGU, "psig")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:02:PRESSURE_RBV") {
+  field(DESC, "MAIN.fbN2_Right.fPress")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.fPress?")
+  field(PREC, "3")
+  field(EGU, "psig")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:02:PRESSURE") {
+  field(DESC, "MAIN.fbN2_Right.fPress")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.fPress=")
+  field(PREC, "3")
+  field(EGU, "psig")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:02:MASS_WARNING_THRESHOLD_RBV") {
+  field(DESC, "MAIN.fbN2_Right.fWarningThresh")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.fWarningThresh?")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:02:MASS_WARNING_THRESHOLD") {
+  field(DESC, "MAIN.fbN2_Right.fWarningThresh")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.fWarningThresh=")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC VAL")
+  info(archive, "VAL")
+}
+
+record(bi, "KFE:N2:02:VALVE:OPN_SW_RBV") {
+  field(DESC, "MAIN.fbN2_Right.fbValveRelay.b_open")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.fbValveRelay.b_open?")
+  field(ZNAM, "CLOSE")
+  field(ONAM, "OPEN")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "KFE:N2:02:VALVE:OPN_SW") {
+  field(DESC, "MAIN.fbN2_Right.fbValveRelay.b_open")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.fbValveRelay.b_open=")
+  field(ZNAM, "CLOSE")
+  field(ONAM, "OPEN")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(mbbi, "KFE:N2:02:STATE_RBV") {
+  field(DESC, "MAIN.fbN2_Right.iState")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.iState?")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "INIT")
+  field(ONST, "NOMINAL")
+  field(TWST, "EXCHANGE_MODE")
+  field(THST, "WAITING_FOR_START_ECHANGE")
+  info(autosaveFields_pass0, "DESC DISS EISV ELSV FFSV FRSV FTSV FVSV NISV ONSV SIMS SVSV SXSV TESV THSV TTSV TVSV TWSV UDFS UNSV ZRSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(mbbo, "KFE:N2:02:STATE") {
+  field(DESC, "MAIN.fbN2_Right.iState")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "INIT")
+  field(ONST, "NOMINAL")
+  field(TWST, "EXCHANGE_MODE")
+  field(THST, "WAITING_FOR_START_ECHANGE")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.iState=")
+  info(autosaveFields_pass0, "COSV DESC DISS EISV ELSV FFSV FRSV FTSV FVSV NISV ONSV SIMS SVSV SXSV TESV THSV TTSV TVSV TWSV UDFS UNSV VAL ZRSV")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:02:MAX_MASS_RBV") {
+  field(DESC, "MAIN.fbN2_Right.maxMass")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.maxMass?")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:02:MAX_MASS") {
+  field(DESC, "MAIN.fbN2_Right.maxMass")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.maxMass=")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "KFE:N2:02:MIN_MASS_RBV") {
+  field(DESC, "MAIN.fbN2_Right.minMass")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbN2_Right.minMass?")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "KFE:N2:02:MIN_MASS") {
+  field(DESC, "MAIN.fbN2_Right.minMass")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fbN2_Right.minMass=")
+  field(PREC, "3")
+  field(EGU, "lbs")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
   info(archive, "VAL")
 }
