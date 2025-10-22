@@ -50,19 +50,19 @@ VAR
     {attribute 'pytmc' := '
         pv: MIN_PRESS_THRESHOLD
         field: EGU psig
-        autosave_pass0: VAL DESC
+        autosave_pass1: VAL DESC
     '}
     fMinPressureThresh 		: LREAL ;
     {attribute 'pytmc' := '
         pv: MIN_MASS_THRESHOLD
         field: EGU lbs
-        autosave_pass0: VAL DESC
+        autosave_pass1: VAL DESC
     '}
     fMinMassThresh			: LREAL;
     {attribute 'pytmc' := '
         pv: MASS_WARNING_THRESHOLD
         field: EGU lbs
-        autosave_pass0: VAL DESC
+        autosave_pass1: VAL DESC
     '}
     fWarningThresh: LREAL;
     //
@@ -85,7 +85,6 @@ END_VAR
       <ST><![CDATA[IF bInit THEN
     maxMass := 1000;
     minMass := 0;
-	fMinMassThresh := 550; // Default Value in Lbs
     bInit := FALSE;
 END_IF
 
