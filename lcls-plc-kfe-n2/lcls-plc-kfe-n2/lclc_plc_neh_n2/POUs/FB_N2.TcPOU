@@ -73,8 +73,7 @@ VAR
 
     {attribute 'pytmc' := '
         pv: STATE
-
-    '}
+	'}
     iState : E_MAIN_STATE_MACHINE  := E_MAIN_STATE_MACHINE.INIT;
     {attribute 'pytmc' := 'pv: LED_FLASH'}
     bFlashFlag : BOOL := FALSE;
@@ -100,8 +99,10 @@ fPress := (fPressMa - 4.0) / 16.0 * 500;
 CASE iState OF
     E_MAIN_STATE_MACHINE.INIT: // INIT
 
-    IF ((fPress > fMinPressureThresh) AND (fMassofGas > fMinMassThresh)) THEN
+    IF ((fPress > fMinPressureThresh) OR (fMassofGas > fMinMassThresh)) THEN
         fbValveRelay.ACTUATE_VALVE(TRUE);
+		eLEDMode := E_LED_MODES.GREEN;
+    	bFlashFlag := FALSE;
     ELSE
         fbValveRelay.ACTUATE_VALVE(FALSE);
         eLEDMode := E_LED_MODES.YELLOW;
@@ -109,8 +110,6 @@ CASE iState OF
     END_IF
 
     iState := E_MAIN_STATE_MACHINE.NOMINAL;
-    eLEDMode := E_LED_MODES.GREEN;
-    bFlashFlag := FALSE;
 
     E_MAIN_STATE_MACHINE.NOMINAL: // Nominal
 

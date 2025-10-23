@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
 	<Project GUID="{E7B2A131-7601-4CB6-9E2A-2C803CB2E77E}" Name="lclc_plc_neh_n2" PrjFilePath="..\..\lclc_plc_neh_n2\lclc_plc_neh_n2.plcproj" TmcFilePath="..\..\lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{AE7D4714-5F96-9F64-1D4C-E1081022FE5F}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{B2F14ED6-AE41-E1FB-BF32-9D5CAAF81594}">
 			<Name>lclc_plc_neh_n2 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
