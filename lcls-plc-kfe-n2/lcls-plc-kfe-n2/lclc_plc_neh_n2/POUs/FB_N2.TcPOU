@@ -112,6 +112,9 @@ CASE iState OF
     iState := E_MAIN_STATE_MACHINE.NOMINAL;
 
     E_MAIN_STATE_MACHINE.NOMINAL: // Nominal
+	
+	eLEDMode := E_LED_MODES.GREEN;
+    bFlashFlag := FALSE;
 
     IF bInduceButton THEN
         eLEDMode := E_LED_MODES.YELLOW;
@@ -126,9 +129,6 @@ CASE iState OF
         bFlashFlag := FALSE;
         iState := E_MAIN_STATE_MACHINE.WAITING_FOR_START_ECHANGE;
         fbValveRelay.ACTUATE_VALVE(FALSE);
-    ELSE
-        eLEDMode := E_LED_MODES.GREEN;
-        bFlashFlag := FALSE;
     END_IF
 
     IF (fMassofGas < fWarningThresh) THEN
@@ -143,6 +143,7 @@ CASE iState OF
     END_IF
 
     E_MAIN_STATE_MACHINE.WAITING_FOR_START_ECHANGE:
+	eLEDMode := E_LED_MODES.RED;
     IF bInduceButton THEN
         iState := E_MAIN_STATE_MACHINE.EXCHANGE_MODE;
         eLEDMode := E_LED_MODES.YELLOW;
